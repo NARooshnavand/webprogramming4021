@@ -1,5 +1,6 @@
 <?php
-require_once('./functions.php'); 
+require_once('./functions.php');
+$number_of_hours = 4; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +15,13 @@ require_once('./functions.php');
     require('./profs.php');
     require('./relations.php');
     // dd($profs_lessons);
-    foreach($profs_lessons as $key=>$value)
+    foreach($profs_lessons as $prof_id=>$lesson_ids)
     {
-        echo($key);
-        var_dump($value);
+        echo($profs[$prof_id]['name']);
+        foreach($lesson_ids as $lesson_id)
+        {
+            echo($lessons[$lesson_id]['title']);
+        }
         echo('<br>');
     }
      
@@ -46,10 +50,18 @@ require_once('./functions.php');
                 <?php for($cnt=0;$cnt<5;$cnt++){ ?>
                     <tr>
                         <td><?php echo($week_days[$cnt]) ?></td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
+                        <?php for($tcount = 0; $tcount<$number_of_hours;$tcount++) {
+                            $k = $cnt*$number_of_hours+$tcount;
+                            foreach($profs_lessons as $prof_id => $lesson_ids):
+                                foreach($lesson_ids as $lesson_id):
+                                    $program = $lessons[$lesson_id]['program'];
+                                    if(in_array($k,$program)){
+                            ?>
+                                        <td><?php echo($lessons[$lesson_id]['title'].' ('.$profs[$prof_id]['name'].')'); ?></td>
+                                    <?php } ?>
+                                <?php endforeach ?>
+                            <?php endforeach ?>
+                        <?php  } ?>
                     </tr>
                 <?php } ?>
                 </tbody>
