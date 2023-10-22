@@ -12,7 +12,14 @@ require_once('./functions.php');
     <?php
     require('./lessons.php');
     require('./profs.php');
-    dd($profs);
+    require('./relations.php');
+    // dd($profs_lessons);
+    foreach($profs_lessons as $key=>$value)
+    {
+        echo($key);
+        var_dump($value);
+        echo('<br>');
+    }
      
     ?>
     <body dir="rtl">
