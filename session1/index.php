@@ -9,22 +9,17 @@ $number_of_hours = 4;
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>اولین درس برنامه نویسی وب</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+        <style>
+            .lesson{
+                cursor:pointer;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     </head>
     <?php
     require('./lessons.php');
     require('./profs.php');
     require('./relations.php');
-    // dd($profs_lessons);
-    foreach($profs_lessons as $prof_id=>$lesson_ids)
-    {
-        echo($profs[$prof_id]['name']);
-        foreach($lesson_ids as $lesson_id)
-        {
-            echo($lessons[$lesson_id]['title']);
-        }
-        echo('<br>');
-    }
-     
     ?>
     <body dir="rtl">
         <h1>برنامه ترم اول سال تحصیلی 401-402 مهندسی نرم افزار</h1>
@@ -52,15 +47,13 @@ $number_of_hours = 4;
                         <td><?php echo($week_days[$cnt]) ?></td>
                         <?php for($tcount = 0; $tcount<$number_of_hours;$tcount++) {
                             $k = $cnt*$number_of_hours+$tcount;
-                            foreach($profs_lessons as $prof_id => $lesson_ids):
-                                foreach($lesson_ids as $lesson_id):
-                                    $program = $lessons[$lesson_id]['program'];
-                                    if(in_array($k,$program)){
+                            $cell =  get_lessons_in_this_time($profs_lessons, $lessons, $profs ,$k);
                             ?>
-                                        <td><?php echo($lessons[$lesson_id]['title'].' ('.$profs[$prof_id]['name'].')'); ?></td>
-                                    <?php } ?>
-                                <?php endforeach ?>
-                            <?php endforeach ?>
+                            <?php if($cell) {?>
+                                <td class="lesson"><?php print $cell ?></td>
+                                <?php }else{ ?>
+                                <td><?php print $cell ?></td>
+                                <?php } ?>
                         <?php  } ?>
                     </tr>
                 <?php } ?>
@@ -68,4 +61,9 @@ $number_of_hours = 4;
             </table>
         </div>
     </body>
+    <script>
+        $(document).ready(function(){
+            console.log('jQuery is ready for use');
+        })
+    </script>
 </html>
