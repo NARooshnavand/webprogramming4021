@@ -1,5 +1,11 @@
 <?php
 require_once('./functions.php');
+$connection = connect_to_mysql();
+$res = $connection->query("SHOW DATABASES;");
+while ($row = mysqli_fetch_assoc($res)) {
+    echo $row['Database'] . "\n";
+}
+dd($res);
 $number_of_hours = 4; 
 ?>
 <!DOCTYPE html>
@@ -63,7 +69,10 @@ $number_of_hours = 4;
     </body>
     <script>
         $(document).ready(function(){
-            console.log('jQuery is ready for use');
+            $('.lesson').on('click',function(){
+                var text = $(this).html();
+                alert(text);
+            })
         })
     </script>
 </html>
