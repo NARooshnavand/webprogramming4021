@@ -1,11 +1,17 @@
 <?php
 require_once('./functions.php');
-$connection = connect_to_mysql();
-$res = $connection->query("SHOW DATABASES;");
-while ($row = mysqli_fetch_assoc($res)) {
-    echo $row['Database'] . "\n";
-}
-dd($res);
+require_once('./MySQLDB.php');
+$db = new MySQLDB();
+// $db->createTable('profs', 'id int(11) PRIMARY KEY AUTO_INCREMENT, name VARCHAR(256)');
+// $db->createTable('lessons', 'id int(11) PRIMARY KEY, title VARCHAR(256), vahed int(1), term int(1)');
+
+dd($db);
+// $connection = connect_to_mysql();
+// $res = $connection->query("SHOW DATABASES;");
+// while ($row = mysqli_fetch_assoc($res)) {
+//     echo $row['Database'] . "\n";
+// }
+// dd($res);
 $number_of_hours = 4; 
 ?>
 <!DOCTYPE html>
