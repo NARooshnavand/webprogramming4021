@@ -4,7 +4,17 @@ require_once('./MySQLDB.php');
 $db = new MySQLDB();
 // $db->createTable('profs', 'id int(11) PRIMARY KEY AUTO_INCREMENT, name VARCHAR(256)');
 // $db->createTable('lessons', 'id int(11) PRIMARY KEY, title VARCHAR(256), vahed int(1), term int(1)');
+require_once('./lessons.php');
+foreach($lessons as $lesson)
+{
+    $data = [
+        'title' => $lesson['title'],
+        'vahed' => $lesson['vahed'],
+        'term' => $lesson['term']
+    ];
+    $db->insert('lessons', $data);
 
+}
 dd($db);
 // $connection = connect_to_mysql();
 // $res = $connection->query("SHOW DATABASES;");
