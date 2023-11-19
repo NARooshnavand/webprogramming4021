@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>برنامه ترم آینده</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>این مربوط به برنامه ترم آینده است.</h1>
+    <h1>this is test file</h1>
 </body>
 </html>
