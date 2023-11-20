@@ -20,4 +20,4 @@ Route::get('/', function () {
 Route::get('/addprof', function () {
     return view('admin.profs.add');
 });
-Route::post('/addprof',[ProfController::class,'save_prof_new']); 
+Route::post('/addprof',[ProfController::class,'save_prof']); 
