@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', function () {
-    return view('frontend.test');
+Route::get('/addprof', function () {
+    return view('admin.profs.add');
 });
+Route::post('/addprof',[ProfController::class,'save_prof_new']); 
