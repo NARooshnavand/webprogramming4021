@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfController;
 use App\Http\Controllers\LessonController;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +35,15 @@ Route::get('/edit/{id}',[ProfController::class,'edit']);
 Route::put('/edit/{id}',[ProfController::class,'save'])->name('saveprof');
 Route::delete('/delete/{id}',[ProfController::class,'delete'])->name('deleteprof');
 Route::resource('lesson',LessonController::class);
+
+Route::get('/register',function(){
+    return view('auth.register');
+});
+Route::post('/register',function(Request $request){
+    $user = new \App\Models\User();
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->password = bcrypt($request->password);
+    $user->save();
+    dd($user);
+})->name('registeruser');
