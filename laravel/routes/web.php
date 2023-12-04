@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfController;
-
+use App\Http\Controllers\LessonController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,3 +28,8 @@ Route::get('/proflist',[ProfController::class,'index'])->name('proflist');
 Route::post('/addprof',[ProfController::class,'save_prof']); 
 //
 Route::get('/showprof/{id}',[ProfController::class,'show_prof']);
+
+Route::get('/edit/{id}',[ProfController::class,'edit']);
+Route::put('/edit/{id}',[ProfController::class,'save'])->name('saveprof');
+Route::delete('/delete/{id}',[ProfController::class,'delete'])->name('deleteprof');
+Route::resource('lesson',LessonController::class);

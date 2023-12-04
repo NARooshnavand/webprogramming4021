@@ -25,5 +25,23 @@ class ProfController extends Controller
         return redirect()->route('proflist');
 
     }
+    public function edit($id)
+    {
+        $prof = Prof::findOrfail($id);
+        return view('admin.profs.edit',['prof'=>$prof]);
+    }
+    public function save($id, Request $request)
+    {
+        $prof = Prof::findOrfail($id);
+        $prof->name = $request->name;
+        $prof->save();
+        return redirect()->route('proflist');
+    }
+    public function delete($id)
+    {
+        Prof::destroy($id);
+        return redirect()->route('proflist');
+
+    }
     
 }

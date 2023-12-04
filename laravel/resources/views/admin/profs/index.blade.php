@@ -24,6 +24,12 @@
                         <td>{{$prof->id}}</td>
                         <td>{{$prof->name}}</td>
                         <td><a href="{{url('/showprof/'.$prof->id)}}" class="btn btn-primary">نمایش</a></td>
+                        <td><a href="{{url('/edit/'.$prof->id)}}" class="btn btn-warning" target="_blank">ویرایش</a></td>
+                        <td><form action="{{route('deleteprof',['id'=>$prof->id])}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">حذف</button>
+                            </form>
                     </tr>
                     @endforeach
                 </tbody>
