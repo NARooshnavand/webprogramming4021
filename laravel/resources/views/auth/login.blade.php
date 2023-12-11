@@ -1,13 +1,8 @@
 @extends('layouts.main')
-
 @section('body')
 <div class="col-md-6" style="margin-left:auto;margin-right:auto;">
-    <form action="{{route('registeruser')}}" method="post">
+    <form action="{{route('loginuser')}}" method="post">
     @csrf()    
-    <div class="form-group">
-            <label for="">نام</label>
-        <input type="text" name="name" class="form-control">
-        </div>
         <div class="form-group">
             <label for="">ایمیل</label>
         <input type="email" name="email" class="form-control">
